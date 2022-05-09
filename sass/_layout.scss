@@ -1,0 +1,14 @@
+.main-container {
+  min-height: 100vh;
+  width: max(325px, 85vw);
+  margin-inline: auto;
+
+  display: grid;
+  place-content: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: var(--justify-, space-between);
+  align-items: var(--align-, center);
+}
