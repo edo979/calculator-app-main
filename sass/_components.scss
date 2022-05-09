@@ -1,0 +1,20 @@
+.theme {
+  display: grid;
+
+  grid-template-areas:
+    '. numbers'
+    'title switcher';
+  column-gap: 1rem;
+  align-items: center;
+
+  &_title {
+    grid-area: title;
+  }
+
+  &_ids {
+    grid-area: numbers;
+  }
+  &_switcher {
+    grid-area: switcher;
+  }
+}
