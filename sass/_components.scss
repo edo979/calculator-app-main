@@ -48,10 +48,6 @@
 }
 
 .calc-app {
-  &_display {
-    margin: 1.5rem 0 1rem;
-  }
-
   &_keyboard {
     padding: 1.5rem;
     border-radius: 10px;
@@ -79,7 +75,7 @@
 
       cursor: pointer;
 
-      transition: transform 0.2s ease-in-out;
+      transition: transform 0.12s ease-in-out, box-shadow 0.12s;
 
       &.--del-key,
       &.--go-key {
@@ -87,7 +83,8 @@
       }
 
       &:active {
-        transform: translateY(5px);
+        transform: translateY(2px);
+        box-shadow: none !important;
       }
     }
   }
@@ -95,7 +92,8 @@
 
 #display {
   width: 100%;
-  padding: 1.5rem 0.55rem 1.25rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem 0.55rem;
   border: none;
   border-radius: 10px;
 
