@@ -1,0 +1,49 @@
+@use 'colors-2' as *;
+
+.theme-1 {
+  background-color: $Light-gray;
+
+  color: $Very-dark-grayish-yellow;
+
+  .theme {
+    &_switcher {
+      background-color: $Grayish-red;
+
+      &::after {
+        background-color: $Orange;
+      }
+    }
+  }
+
+  #display {
+    color: inherit;
+
+    background-color: $Very-light-gray;
+  }
+
+  .calc-app {
+    &_keyboard {
+      background-color: $Grayish-red;
+
+      input[type='button'] {
+        background-color: $Light-grayish-yellow;
+        color: $Very-dark-grayish-yellow;
+
+        box-shadow: 0 4px 0 $Dark-grayish-orange;
+
+        &.--del-key {
+          background-color: $Dark-moderate-cyan;
+          box-shadow: 0 4px 0 $Very-dark-cyan;
+        }
+        &.--go-key {
+          background-color: $Orange;
+          box-shadow: 0 4px 0 $Dark-orange;
+        }
+        &.--go-key,
+        &.--del-key {
+          color: $White;
+        }
+      }
+    }
+  }
+}
