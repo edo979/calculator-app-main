@@ -76,11 +76,19 @@
 
       line-height: 1;
       font-size: var(--fs-800);
-    }
 
-    .--del-key,
-    .--go-key {
-      font-size: var(--fs-600) !important;
+      cursor: pointer;
+
+      transition: transform 0.2s ease-in-out;
+
+      &.--del-key,
+      &.--go-key {
+        font-size: var(--fs-600);
+      }
+
+      &:active {
+        transform: translateY(5px);
+      }
     }
   }
 }
