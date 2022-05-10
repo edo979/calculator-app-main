@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
 
+:root {
+  --fs-900: 2.45rem;
+}
+
 body {
   font-family: 'League Spartan', sans-serif;
+}
+
+// Utility:
+.fs-900 {
+  font-size: var(--fs-900);
 }

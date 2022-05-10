@@ -13,11 +13,13 @@
 
   &_ids {
     grid-area: numbers;
+
     --justify-: space-around;
   }
 
   &_switcher {
     grid-area: switcher;
+
     position: relative;
 
     min-width: 70px;
@@ -33,6 +35,7 @@
       border-radius: 50%;
     }
   }
+
   &_switch {
     background-color: transparent;
     border: none;
