@@ -51,7 +51,11 @@
   &_display {
     margin: 1.5rem 0 1rem;
   }
+
   &_keyboard {
+    padding: 1.5rem;
+    border-radius: 10px;
+
     display: grid;
     grid-template: repeat(5, 1fr) / repeat(4, 1fr);
     gap: var(--gap-, 1rem);
@@ -63,6 +67,16 @@
     :last-child {
       grid-column: 3 / span 2;
     }
+
+    input[type='button'] {
+      margin: 0;
+      padding: 1rem 0 0.5rem;
+      border: none;
+      border-radius: 5px;
+
+      line-height: 1;
+      font-size: var(--fs-800);
+    }
   }
 }
 
@@ -70,7 +84,7 @@
   width: 100%;
   padding: 1.5rem 0.55rem 1.25rem;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
 
   font-size: var(--fs-900);
   line-height: 1;

@@ -20,4 +20,15 @@
 
     background-color: $Very-dark-desaturated-blue-100;
   }
+
+  .calc-app {
+    &_keyboard {
+      background-color: $Very-dark-desaturated-blue-200;
+
+      input[type='button'] {
+        background-color: $Light-grayish-orange;
+        color: $Very-dark-grayish-blue;
+      }
+    }
+  }
 }
