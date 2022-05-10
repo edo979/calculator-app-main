@@ -29,6 +29,15 @@
         background-color: $Light-grayish-orange;
         color: $Very-dark-grayish-blue;
       }
+
+      .--del-key {
+        background-color: $Desaturated-dark-blue-200 !important;
+        color: $White !important;
+      }
+      .--go-key {
+        background-color: $Red !important;
+        color: $White !important;
+      }
     }
   }
 }
