@@ -13,9 +13,32 @@
 
   &_ids {
     grid-area: numbers;
+    --justify-: space-around;
   }
+
   &_switcher {
     grid-area: switcher;
+    position: relative;
+
+    min-width: 70px;
+    min-height: 25px;
+    padding-inline: 5px;
+    border-radius: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+    }
+  }
+  &_switch {
+    background-color: transparent;
+    border: none;
+
+    color: transparent;
+    font-size: 0.5rem;
   }
 }
 

@@ -1,1 +1,17 @@
 @use 'colors-1' as *;
+
+.theme-1 {
+  background-color: $Very-dark-desaturated-blue-300;
+
+  color: $White;
+
+  .theme {
+    &_switcher {
+      background-color: $Very-dark-desaturated-blue-200;
+
+      &::after {
+        background-color: $Red;
+      }
+    }
+  }
+}
