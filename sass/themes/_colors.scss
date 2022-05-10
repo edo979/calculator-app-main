@@ -1,20 +1,38 @@
-// ### Theme 1
+@supports not (prefers-color-scheme: dark) {
+  :root {
+    --main-bg: hsl(0, 0%, 90%);
+    --toggle-bg: hsl(0, 5%, 81%); // (toggle background, keypad background)
+    --scr-bg: hsl(0, 0%, 93%);
+    --key-bg: hsl(45, 7%, 89%);
+    --key-shd: hsl(35, 11%, 61%);
+    --key-del-bg: hsl(185, 42%, 37%);
+    --key-del-shd: hsl(185, 58%, 25%);
+    --toggle: hsl(25, 98%, 40%); // (key background, toggle)
+    --key-go-shd: hsl(25, 99%, 27%);
+    --text-clr: hsl(60, 10%, 19%);
+    --text-key-clr: hsl(60, 10%, 19%);
+    --text-del-clr: hsl(0, 0%, 100%);
+    --text-go-clr: hsl(0, 0%, 100%);
+  }
+}
 
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --main-bg: hsl(222, 26%, 31%);
-//     --toggle-bg: hsl(223, 31%, 20%); // (toggle background, keypad background)
-//     --scr-bg: hsl(224, 36%, 15%);
-//     --key-bg: hsl(30, 25%, 89%);
-//     --key-shd: hsl(28, 16%, 65%);
-//     --key-del-bg: hsl(225, 21%, 49%);
-//     --key-del-shd: hsl(224, 28%, 35%);
-//     --toggle: hsl(6, 63%, 50%); // (key background, toggle)
-//     --key-go-shd: hsl(6, 70%, 34%);
-//     --clr-dark: hsl(221, 14%, 31%);
-//     --clr-light: hsl(0, 0%, 100%);
-//   }
-// }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg: hsl(222, 26%, 31%);
+    --toggle-bg: hsl(223, 31%, 20%); // (toggle background, keypad background)
+    --scr-bg: hsl(224, 36%, 15%);
+    --key-bg: hsl(30, 25%, 89%);
+    --key-shd: hsl(28, 16%, 65%);
+    --key-del-bg: hsl(225, 21%, 49%);
+    --key-del-shd: hsl(224, 28%, 35%);
+    --toggle: hsl(6, 63%, 50%); // (key background, toggle)
+    --key-go-shd: hsl(6, 70%, 34%);
+    --text-clr: hsl(0, 0%, 100%);
+    --text-key-clr: hsl(221, 14%, 31%);
+    --text-del-crl: hsl(0, 0%, 100%);
+    --text-go-crl: hsl(0, 0%, 100%);
+  }
+}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -27,8 +45,10 @@
     --key-del-shd: hsl(185, 58%, 25%);
     --toggle: hsl(25, 98%, 40%); // (key background, toggle)
     --key-go-shd: hsl(25, 99%, 27%);
-    --clr-dark: hsl(60, 10%, 19%);
-    --clr-light: hsl(0, 0%, 100%);
+    --text-clr: hsl(60, 10%, 19%);
+    --text-key-clr: hsl(60, 10%, 19%);
+    --text-del-clr: hsl(0, 0%, 100%);
+    --text-go-clr: hsl(0, 0%, 100%);
   }
 }
 
@@ -44,8 +64,8 @@
   --key-go-shd: hsl(6, 70%, 34%);
   --text-clr: hsl(0, 0%, 100%);
   --text-key-clr: hsl(221, 14%, 31%);
-  --text-del-crl: hsl(0, 0%, 100%);
-  --text-go-crl: hsl(0, 0%, 100%);
+  --text-del-clr: hsl(0, 0%, 100%);
+  --text-go-clr: hsl(0, 0%, 100%);
 }
 
 .light {
@@ -59,6 +79,23 @@
   --toggle: hsl(25, 98%, 40%); // (key background, toggle)
   --key-go-shd: hsl(25, 99%, 27%);
   --text-clr: hsl(60, 10%, 19%);
+  --text-key-clr: hsl(60, 10%, 19%);
   --text-del-clr: hsl(0, 0%, 100%);
   --text-go-clr: hsl(0, 0%, 100%);
+}
+
+.violet {
+  --main-bg: hsl(268, 75%, 9%);
+  --toggle-bg: hsl(268, 71%, 12%); // (toggle background, keypad background)
+  --scr-bg: hsl(268, 71%, 12%);
+  --key-bg: hsl(268, 47%, 21%);
+  --key-shd: hsl(290, 70%, 36%);
+  --key-del-bg: hsl(281, 89%, 26%);
+  --key-del-shd: hsl(285, 91%, 52%);
+  --toggle: hsl(176, 100%, 44%); // (key background, toggle)
+  --key-go-shd: hsl(177, 92%, 70%);
+  --text-clr: hsl(52, 100%, 62%);
+  --text-key-clr: hsl(52, 100%, 62%);
+  --text-del-clr: hsl(0, 0%, 100%);
+  --text-go-clr: hsl(198, 20%, 13%);
 }
