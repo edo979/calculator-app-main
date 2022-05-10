@@ -9,6 +9,8 @@
 
   &_title {
     grid-area: title;
+    line-height: 1.3;
+    align-self: end;
   }
 
   &_ids {
