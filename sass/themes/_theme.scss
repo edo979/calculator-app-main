@@ -1,3 +1,47 @@
-@import 'theme-1';
-@import 'theme-2';
-@import 'theme-3';
+@import 'colors';
+
+body {
+  background-color: var(--main-bg);
+
+  color: var(--text-clr);
+}
+
+.theme {
+  &_switcher {
+    background-color: var(--toggle-bg);
+
+    &::after {
+      background-color: var(--toggle);
+    }
+  }
+}
+
+#display {
+  color: var(--clr-light);
+
+  background-color: var(--scr-bg);
+}
+
+.calc-app {
+  &_keyboard {
+    background-color: var(--toggle-bg);
+
+    input[type='button'] {
+      background-color: var(--key-bg);
+      color: var(--text-key-clr);
+
+      box-shadow: 0 4px 0 var(--key-shd);
+
+      &.--del-key {
+        background-color: var(--key-del-bg);
+        box-shadow: 0 4px 0 var(--key-del-shd);
+        color: var(--text-del-clr);
+      }
+      &.--go-key {
+        background-color: var(--toggle);
+        box-shadow: 0 4px 0 var(--key-go-shd);
+        color: var(--text-go-clr);
+      }
+    }
+  }
+}
