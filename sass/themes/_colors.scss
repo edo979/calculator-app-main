@@ -1,58 +1,20 @@
-@supports not (prefers-color-scheme: light) {
-  :root {
-    --main-bg: hsl(0, 0%, 90%);
-    --toggle-bg: hsl(0, 5%, 81%); // (toggle background, keypad background)
-    --scr-bg: hsl(0, 0%, 93%);
-    --key-bg: hsl(45, 7%, 89%);
-    --key-shd: hsl(35, 11%, 61%);
-    --key-del-bg: hsl(185, 42%, 37%);
-    --key-del-shd: hsl(185, 58%, 25%);
-    --toggle: hsl(25, 98%, 40%); // (key background, toggle)
-    --key-go-shd: hsl(25, 99%, 27%);
-    --text-clr: hsl(60, 10%, 19%);
-    --text-key-clr: hsl(60, 10%, 19%);
-    --text-del-clr: hsl(0, 0%, 100%);
-    --text-go-clr: hsl(0, 0%, 100%);
-  }
+@mixin light-clr {
+  --main-bg: hsl(0, 0%, 90%);
+  --toggle-bg: hsl(0, 5%, 81%); // (toggle background, keypad background)
+  --scr-bg: hsl(0, 0%, 93%);
+  --key-bg: hsl(45, 7%, 89%);
+  --key-shd: hsl(35, 11%, 61%);
+  --key-del-bg: hsl(185, 42%, 37%);
+  --key-del-shd: hsl(185, 58%, 25%);
+  --toggle: hsl(25, 98%, 40%); // (key background, toggle)
+  --key-go-shd: hsl(25, 99%, 27%);
+  --text-clr: hsl(60, 10%, 19%);
+  --text-key-clr: hsl(60, 10%, 19%);
+  --text-del-clr: hsl(0, 0%, 100%);
+  --text-go-clr: hsl(0, 0%, 100%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --main-bg: hsl(0, 0%, 90%);
-    --toggle-bg: hsl(0, 5%, 81%); // (toggle background, keypad background)
-    --scr-bg: hsl(0, 0%, 93%);
-    --key-bg: hsl(45, 7%, 89%);
-    --key-shd: hsl(35, 11%, 61%);
-    --key-del-bg: hsl(185, 42%, 37%);
-    --key-del-shd: hsl(185, 58%, 25%);
-    --toggle: hsl(25, 98%, 40%); // (key background, toggle)
-    --key-go-shd: hsl(25, 99%, 27%);
-    --text-clr: hsl(60, 10%, 19%);
-    --text-key-clr: hsl(60, 10%, 19%);
-    --text-del-clr: hsl(0, 0%, 100%);
-    --text-go-clr: hsl(0, 0%, 100%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --main-bg: hsl(222, 26%, 31%);
-    --toggle-bg: hsl(223, 31%, 20%); // (toggle background, keypad background)
-    --scr-bg: hsl(224, 36%, 15%);
-    --key-bg: hsl(30, 25%, 89%);
-    --key-shd: hsl(28, 16%, 65%);
-    --key-del-bg: hsl(225, 21%, 49%);
-    --key-del-shd: hsl(224, 28%, 35%);
-    --toggle: hsl(6, 63%, 50%); // (key background, toggle)
-    --key-go-shd: hsl(6, 70%, 34%);
-    --text-clr: hsl(0, 0%, 100%);
-    --text-key-clr: hsl(221, 14%, 31%);
-    --text-del-clr: hsl(0, 0%, 100%);
-    --text-go-clr: hsl(0, 0%, 100%);
-  }
-}
-
-.dark {
+@mixin dark-clr {
   --main-bg: hsl(222, 26%, 31%);
   --toggle-bg: hsl(223, 31%, 20%); // (toggle background, keypad background)
   --scr-bg: hsl(224, 36%, 15%);
@@ -68,20 +30,30 @@
   --text-go-clr: hsl(0, 0%, 100%);
 }
 
+@supports not (prefers-color-scheme: light) {
+  :root {
+    @include light-clr;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include light-clr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark-clr;
+  }
+}
+
+.dark {
+  @include dark-clr;
+}
+
 .light {
-  --main-bg: hsl(0, 0%, 90%);
-  --toggle-bg: hsl(0, 5%, 81%); // (toggle background, keypad background)
-  --scr-bg: hsl(0, 0%, 93%);
-  --key-bg: hsl(45, 7%, 89%);
-  --key-shd: hsl(35, 11%, 61%);
-  --key-del-bg: hsl(185, 42%, 37%);
-  --key-del-shd: hsl(185, 58%, 25%);
-  --toggle: hsl(25, 98%, 40%); // (key background, toggle)
-  --key-go-shd: hsl(25, 99%, 27%);
-  --text-clr: hsl(60, 10%, 19%);
-  --text-key-clr: hsl(60, 10%, 19%);
-  --text-del-clr: hsl(0, 0%, 100%);
-  --text-go-clr: hsl(0, 0%, 100%);
+  @include light-clr;
 }
 
 .violet {
