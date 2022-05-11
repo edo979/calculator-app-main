@@ -1,4 +1,6 @@
 const switcherEl = document.querySelector('.theme_switcher'),
+  keyboardEl = document.querySelector('.calc-app_keyboard'),
+  displayEl = document.getElementById('display'),
   themeNames = ['light', 'dark', 'violet']
 
 // detect color scheme
@@ -10,7 +12,7 @@ if (
 }
 
 // event listenerts
-
+// theme change listeners
 switcherEl.addEventListener('click', (e) => {
   if (e.target.classList.contains('theme_switch')) {
     setActivThemeSwitch(e.target)
@@ -30,6 +32,12 @@ window
       setActivThemeSwitch(switcherEl.children[0])
     }
   })
+
+// calc key listeners
+keyboardEl.addEventListener('click', (e) => {
+  const displayValue = displayEl.value
+  displayEl.value = parseFloat(displayValue + '' + e.target.value)
+})
 
 // functions for changing theme
 
