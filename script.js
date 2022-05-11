@@ -5,7 +5,10 @@ const switcherEl = document.querySelector('.theme_switcher'),
 
 // Numbers
 let a = 0,
-  b = 0
+  b = undefined,
+  func = undefined,
+  // prevent calculate if func key pressed multiple times
+  numKeyEntered = false
 
 // detect color scheme
 if (
@@ -43,12 +46,13 @@ keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
   if (keyPressed == '+') {
-    a = a + getNumber()
-    displayEl.value = a
+    setCalcFun('+')
+    console.log(a, func, b)
     return
   }
 
   createNumberOnDisplay(keyPressed)
+  console.log(a, func, b)
 })
 
 // functions for changing theme
@@ -68,9 +72,15 @@ function setActivThemeSwitch(switchEl) {
 // function for calc app
 
 function createNumberOnDisplay(keyPressed) {
+  numKeyEntered = true
+
   if (keyPressed == 'DEL') {
     displayEl.value = '0'
     return
+  }
+
+  if (func !== undefined) {
+    displayEl.value = 0
   }
 
   const displayValue = displayEl.value
@@ -95,5 +105,39 @@ function getNumber() {
     return parseFloat(number)
   } else {
     return parseInt(number)
+  }
+}
+
+function setCalcFun(calcFun) {
+  if (func === undefined) {
+    a = getNumber()
+  } else {
+    if (b === undefined && numKeyEntered) {
+      b = getNumber()
+
+      a = func(a, b)
+      displayEl.value = a
+      b = undefined
+    }
+  }
+
+  numKeyEntered = false
+
+  switch (calcFun) {
+    case '+':
+      func = (num1, num2) => num1 + num2
+      return
+    case '-':
+      func = (num1, num2) => num1 - num2
+      return
+    case '/':
+      func = (num1, num2) => num1 / num2
+      return
+    case '*':
+      func = (num1, num2) => num1 * num2
+      return
+
+    default:
+      return
   }
 }
