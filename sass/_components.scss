@@ -15,8 +15,11 @@
 
   &_ids {
     grid-area: numbers;
-
     --justify-: space-around;
+
+    > label {
+      cursor: pointer;
+    }
   }
 
   &_switcher {
@@ -40,6 +43,8 @@
 
     color: transparent;
     font-size: 0.5rem;
+
+    cursor: pointer;
   }
 }
 

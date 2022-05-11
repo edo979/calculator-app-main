@@ -32,18 +32,26 @@
           <div class="theme">
             <div class="theme_title">THEME</div>
 
-            <div class="theme_ids flex">
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
+            <div class="theme_ids flex" aria-label="page theme switcher labels">
+              <label for="theme-1">1</label>
+              <label for="theme-2">2</label>
+              <label for="theme-3">3</label>
             </div>
 
-            <div class="theme_switcher flex">
-              <button class="theme_switch theme_switch--active" data-switch="1">
+            <div class="theme_switcher flex" aria-label="page theme switcher">
+              <button
+                class="theme_switch theme_switch--active"
+                data-switch="1"
+                id="theme-1"
+              >
                 1
               </button>
-              <button class="theme_switch" data-switch="2">2</button>
-              <button class="theme_switch" data-switch="3">3</button>
+              <button class="theme_switch" data-switch="2" id="theme-2">
+                2
+              </button>
+              <button class="theme_switch" data-switch="3" id="theme-3">
+                3
+              </button>
             </div>
           </div>
         </div>
