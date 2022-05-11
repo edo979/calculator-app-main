@@ -3,6 +3,10 @@ const switcherEl = document.querySelector('.theme_switcher'),
   displayEl = document.getElementById('display'),
   themeNames = ['light', 'dark', 'violet']
 
+// Numbers
+let a = 0,
+  b = 0
+
 // detect color scheme
 if (
   window.matchMedia &&
@@ -36,7 +40,15 @@ window
 // calc key listeners
 // using mouse click
 keyboardEl.addEventListener('click', (e) => {
-  createNumberOnDisplay(e.target.value)
+  const keyPressed = e.target.value
+
+  if (keyPressed == '+') {
+    a = a + getNumber()
+    displayEl.value = a
+    return
+  }
+
+  createNumberOnDisplay(keyPressed)
 })
 
 // functions for changing theme
@@ -75,4 +87,13 @@ function createNumberOnDisplay(keyPressed) {
   }
 
   displayEl.value = displayValue + keyPressed
+}
+
+function getNumber() {
+  number = displayEl.value
+  if (number.includes('.')) {
+    return parseFloat(number)
+  } else {
+    return parseInt(number)
+  }
 }
