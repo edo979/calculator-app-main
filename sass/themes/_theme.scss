@@ -9,8 +9,9 @@ body {
 .theme {
   &_switcher {
     background-color: var(--toggle-bg);
-
-    &::after {
+  }
+  &_switch {
+    &--active {
       background-color: var(--toggle);
     }
   }

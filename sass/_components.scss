@@ -28,19 +28,15 @@
     min-height: 25px;
     padding-inline: 5px;
     border-radius: 20px;
-
-    &::after {
-      content: '';
-      position: absolute;
-      height: 16px;
-      width: 16px;
-      border-radius: 50%;
-    }
   }
 
   &_switch {
-    background-color: transparent;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
     border: none;
+
+    background-color: transparent;
 
     color: transparent;
     font-size: 0.5rem;
