@@ -34,9 +34,9 @@ window
   })
 
 // calc key listeners
+// using mouse click
 keyboardEl.addEventListener('click', (e) => {
-  const displayValue = displayEl.value
-  displayEl.value = parseFloat(displayValue + '' + e.target.value)
+  createNumberOnDisplay(e.target.value)
 })
 
 // functions for changing theme
@@ -51,4 +51,28 @@ function setActivThemeSwitch(switchEl) {
   )
 
   switchEl.classList.add('theme_switch--active')
+}
+
+// function for calc app
+
+function createNumberOnDisplay(keyPressed) {
+  if (keyPressed == 'DEL') {
+    displayEl.value = '0'
+    return
+  }
+
+  const displayValue = displayEl.value
+
+  if (displayValue == '0') {
+    if (keyPressed != '.') {
+      displayEl.value = keyPressed
+      return
+    }
+  }
+
+  if (keyPressed == '.' && displayValue.includes('.')) {
+    return
+  }
+
+  displayEl.value = displayValue + keyPressed
 }
