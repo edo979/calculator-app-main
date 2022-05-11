@@ -46,13 +46,12 @@ keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
   if (keyPressed == '+') {
+    setNumber()
     setCalcFun('+')
-    console.log(a, func, b)
     return
   }
 
   createNumberOnDisplay(keyPressed)
-  console.log(a, func, b)
 })
 
 // functions for changing theme
@@ -108,22 +107,24 @@ function getNumber() {
   }
 }
 
-function setCalcFun(calcFun) {
+function setNumber() {
   if (func === undefined) {
+    // set first number
     a = getNumber()
   } else {
     if (b === undefined && numKeyEntered) {
+      // first number and math operation is set
       b = getNumber()
 
-      a = func(a, b)
-      displayEl.value = a
-      b = undefined
+      calculate()
     }
   }
+}
 
+function setCalcFun(mathOperator) {
   numKeyEntered = false
 
-  switch (calcFun) {
+  switch (mathOperator) {
     case '+':
       func = (num1, num2) => num1 + num2
       return
@@ -138,6 +139,13 @@ function setCalcFun(calcFun) {
       return
 
     default:
-      return
+      func = (num1, num2) => num1 + num2
   }
+}
+
+function calculate() {
+  a = func(a, b)
+  displayEl.value = a
+  // if calculate continues with result of prev calculate
+  b = undefined
 }
