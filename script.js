@@ -52,23 +52,16 @@ keyboardEl.addEventListener('click', (e) => {
   }
 
   if ('+-/x'.includes(keyPressed)) {
-    // prevent multiple calculation before entering second number
-    if (isLastKeyFunc) {
-      // Only change func
+    if (func == undefined) {
       setCalcFun(keyPressed)
+      setFirstNumber()
       return
     } else {
-      // try calculate, then set func for next calulate
-      setNumbers()
+      setSecondNumber()
       calculate()
-      setCalcFun(keyPressed)
-      isLastKeyFunc = true
       return
     }
   }
-
-  // number is entered, prevent calulate with same number over and over ...
-  isLastKeyFunc = false
 
   if (keyPressed == 'DEL') {
     displayNum = 0
@@ -122,12 +115,13 @@ function getNumber() {
   }
 }
 
-function setNumbers() {
-  if (firstNum === undefined) {
-    firstNum = getNumber()
-  } else {
-    secondNum = getNumber()
-  }
+function setFirstNumber() {
+  firstNum = getNumber()
+  displayNum = '0'
+}
+
+function setSecondNumber() {
+  secondNum = getNumber()
   displayNum = '0'
 }
 
@@ -152,7 +146,7 @@ function setCalcFun(mathOperator) {
 }
 
 function calculate() {
-  if (secondNum == undefined) {
+  if (secondNum == undefined || func == undefined) {
     return
   }
 
@@ -162,4 +156,5 @@ function calculate() {
 
   // must build second number
   secondNum = undefined
+  func = undefined
 }
