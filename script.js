@@ -4,11 +4,10 @@ const switcherEl = document.querySelector('.theme_switcher'),
   themeNames = ['light', 'dark', 'violet']
 
 // Numbers
-let a = 0,
-  b = undefined,
+let firstNum = undefined,
+  secondNum = undefined,
   func = undefined,
-  lastKey = 'num',
-  isBnumberBuild = false
+  displayNum = '0'
 
 // detect color scheme
 if (
@@ -45,15 +44,20 @@ window
 keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
-  if (keyPressed == '+') {
-    lastKey = 'func'
-    setNumber()
-    setCalcFun('+')
+  if (keyPressed == 'DEL') {
+    displayNum = 0
+    updateDisplay('0')
     return
   }
 
-  createNumberOnDisplay(keyPressed)
-  lastKey = 'num'
+  if (keyPressed == '+') {
+    setNumbers()
+    setCalcFun('+')
+    calculate()
+    return
+  }
+
+  updateDisplay(keyPressed)
 })
 
 // functions for changing theme
@@ -72,32 +76,22 @@ function setActivThemeSwitch(switchEl) {
 
 // function for calc app
 
-function createNumberOnDisplay(keyPressed) {
-  numKeyEntered = true
-
-  if (keyPressed == 'DEL') {
-    displayEl.value = '0'
+function updateDisplay(keyPressed) {
+  if (keyPressed == '.' && displayNum.includes('.')) {
     return
   }
 
-  if (lastKey == 'func') {
-    displayEl.value = 0
-  }
-
-  const displayValue = displayEl.value
-
-  if (displayValue == '0') {
-    if (keyPressed != '.') {
-      displayEl.value = keyPressed
-      return
+  if (displayNum == '0') {
+    if (keyPressed == '.') {
+      displayNum = '0.'
+    } else {
+      displayNum = keyPressed
     }
+  } else {
+    displayNum = displayNum + '' + keyPressed
   }
 
-  if (keyPressed == '.' && displayValue.includes('.')) {
-    return
-  }
-
-  displayEl.value = displayValue + keyPressed
+  displayEl.value = displayNum
 }
 
 function getNumber() {
@@ -109,17 +103,13 @@ function getNumber() {
   }
 }
 
-function setNumber() {
-  if (func === undefined) {
-    // set first number
-    a = getNumber()
+function setNumbers() {
+  if (firstNum === undefined) {
+    firstNum = getNumber()
   } else {
-    if (b === undefined && lastKey == 'func') {
-      b = getNumber()
-
-      calculate()
-    }
+    secondNum = getNumber()
   }
+  displayNum = 0
 }
 
 function setCalcFun(mathOperator) {
@@ -143,11 +133,14 @@ function setCalcFun(mathOperator) {
 }
 
 function calculate() {
+  if (secondNum === undefined) {
+    return
+  }
+
   // store result in first number
-  a = func(a, b)
-  displayEl.value = a
+  firstNum = func(firstNum, secondNum)
+  displayEl.value = firstNum
 
   // prepere new calculation
-  b = undefined
-  isBnumberBuild = false
+  secondNum = undefined
 }
