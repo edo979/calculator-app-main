@@ -46,14 +46,16 @@ keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
   if ('+-/x'.includes(keyPressed)) {
-    setNumbers()
-    calculate()
-    setCalcFun(keyPressed)
-
     // prevent multiple calculation before entering second number
     if (isLastKeyFunc) {
+      // Only change func
+      setCalcFun(keyPressed)
       return
     } else {
+      // try calculate, then set func for next calulate
+      setNumbers()
+      calculate()
+      setCalcFun(keyPressed)
       isLastKeyFunc = true
       return
     }
