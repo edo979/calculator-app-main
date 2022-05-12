@@ -7,8 +7,8 @@ const switcherEl = document.querySelector('.theme_switcher'),
 let a = 0,
   b = undefined,
   func = undefined,
-  // prevent calculate if func key pressed multiple times
-  numKeyEntered = false
+  lastKey = 'num',
+  isBnumberBuild = false
 
 // detect color scheme
 if (
@@ -46,12 +46,14 @@ keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
   if (keyPressed == '+') {
+    lastKey = 'func'
     setNumber()
     setCalcFun('+')
     return
   }
 
   createNumberOnDisplay(keyPressed)
+  lastKey = 'num'
 })
 
 // functions for changing theme
@@ -78,7 +80,7 @@ function createNumberOnDisplay(keyPressed) {
     return
   }
 
-  if (func !== undefined) {
+  if (lastKey == 'func') {
     displayEl.value = 0
   }
 
@@ -112,8 +114,7 @@ function setNumber() {
     // set first number
     a = getNumber()
   } else {
-    if (b === undefined && numKeyEntered) {
-      // first number and math operation is set
+    if (b === undefined && lastKey == 'func') {
       b = getNumber()
 
       calculate()
@@ -122,8 +123,6 @@ function setNumber() {
 }
 
 function setCalcFun(mathOperator) {
-  numKeyEntered = false
-
   switch (mathOperator) {
     case '+':
       func = (num1, num2) => num1 + num2
@@ -144,8 +143,11 @@ function setCalcFun(mathOperator) {
 }
 
 function calculate() {
+  // store result in first number
   a = func(a, b)
   displayEl.value = a
-  // if calculate continues with result of prev calculate
+
+  // prepere new calculation
   b = undefined
+  isBnumberBuild = false
 }
