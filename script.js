@@ -45,6 +45,12 @@ window
 keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
+  if (keyPressed == '=') {
+    setNumbers()
+    calculate()
+    return
+  }
+
   if ('+-/x'.includes(keyPressed)) {
     // prevent multiple calculation before entering second number
     if (isLastKeyFunc) {
