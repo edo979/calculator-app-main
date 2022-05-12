@@ -7,7 +7,8 @@ const switcherEl = document.querySelector('.theme_switcher'),
 let firstNum = undefined,
   secondNum = undefined,
   func = undefined,
-  displayNum = '0'
+  displayNum = '0',
+  isLastKeyFunc = false
 
 // detect color scheme
 if (
@@ -44,16 +45,26 @@ window
 keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
+  if ('+-/x'.includes(keyPressed)) {
+    setNumbers()
+    calculate()
+    setCalcFun(keyPressed)
+
+    // prevent multiple calculation before entering second number
+    if (isLastKeyFunc) {
+      return
+    } else {
+      isLastKeyFunc = true
+      return
+    }
+  }
+
+  // number is entered, prevent calulate with same number over and over ...
+  isLastKeyFunc = false
+
   if (keyPressed == 'DEL') {
     displayNum = 0
     updateDisplay('0')
-    return
-  }
-
-  if (keyPressed == '+') {
-    setNumbers()
-    setCalcFun('+')
-    calculate()
     return
   }
 
@@ -109,7 +120,7 @@ function setNumbers() {
   } else {
     secondNum = getNumber()
   }
-  displayNum = 0
+  displayNum = '0'
 }
 
 function setCalcFun(mathOperator) {
@@ -123,7 +134,7 @@ function setCalcFun(mathOperator) {
     case '/':
       func = (num1, num2) => num1 / num2
       return
-    case '*':
+    case 'x':
       func = (num1, num2) => num1 * num2
       return
 
@@ -133,7 +144,7 @@ function setCalcFun(mathOperator) {
 }
 
 function calculate() {
-  if (secondNum === undefined) {
+  if (secondNum == undefined) {
     return
   }
 
@@ -141,6 +152,6 @@ function calculate() {
   firstNum = func(firstNum, secondNum)
   displayEl.value = firstNum
 
-  // prepere new calculation
+  // must build second number
   secondNum = undefined
 }
