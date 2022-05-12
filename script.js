@@ -6,9 +6,8 @@ const switcherEl = document.querySelector('.theme_switcher'),
 // Numbers
 let firstNum = undefined,
   secondNum = undefined,
-  func = undefined,
-  displayNum = '0',
-  isLastKeyFunc = false
+  isNewNumber = true,
+  func = undefined
 
 // detect color scheme
 if (
@@ -46,26 +45,31 @@ keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
 
   if (keyPressed == '=') {
-    setNumbers()
     calculate()
     return
   }
 
   if ('+-/x'.includes(keyPressed)) {
-    if (func == undefined) {
-      setCalcFun(keyPressed)
-      setFirstNumber()
-      return
-    } else {
-      setSecondNumber()
+    if (secondNum != undefined) {
       calculate()
-      return
     }
+
+    setCalcFun(keyPressed)
+    isNewNumber = true
+    return
   }
 
   if (keyPressed == 'DEL') {
-    displayNum = 0
-    updateDisplay('0')
+    displayEl.value = 0
+    return
+  }
+
+  if (keyPressed == 'RESET') {
+    displayEl.value = '0'
+    firstNum = undefined
+    secondNum = undefined
+    func = undefined
+    isNewNumber = true
     return
   }
 
@@ -89,25 +93,31 @@ function setActivThemeSwitch(switchEl) {
 // function for calc app
 
 function updateDisplay(keyPressed) {
-  if (keyPressed == '.' && displayNum.includes('.')) {
+  if (isNewNumber) {
+    displayEl.value = '0'
+    isNewNumber = false
+  }
+
+  if (keyPressed == '.' && displayEl.value.includes('.')) {
     return
   }
 
-  if (displayNum == '0') {
+  if (displayEl.value == '0') {
     if (keyPressed == '.') {
-      displayNum = '0.'
+      displayEl.value = '0.'
     } else {
-      displayNum = keyPressed
+      displayEl.value = keyPressed
     }
   } else {
-    displayNum = displayNum + '' + keyPressed
+    displayEl.value = displayEl.value + keyPressed
   }
 
-  displayEl.value = displayNum
+  setNumbers()
 }
 
-function getNumber() {
-  number = displayEl.value
+function stringToNumber() {
+  const number = displayEl.value
+
   if (number.includes('.')) {
     return parseFloat(number)
   } else {
@@ -115,14 +125,12 @@ function getNumber() {
   }
 }
 
-function setFirstNumber() {
-  firstNum = getNumber()
-  displayNum = '0'
-}
-
-function setSecondNumber() {
-  secondNum = getNumber()
-  displayNum = '0'
+function setNumbers() {
+  if (func == undefined) {
+    firstNum = stringToNumber()
+  } else {
+    secondNum = stringToNumber()
+  }
 }
 
 function setCalcFun(mathOperator) {
@@ -154,7 +162,7 @@ function calculate() {
   firstNum = func(firstNum, secondNum)
   displayEl.value = firstNum
 
-  // must build second number
+  // prepare for new calculate
   secondNum = undefined
   func = undefined
 }
