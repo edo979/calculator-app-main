@@ -1,7 +1,6 @@
 const switcherEl = document.querySelector('.theme_switcher'),
   keyboardEl = document.querySelector('.calc-app_keyboard'),
-  displayEl = document.getElementById('display'),
-  themeNames = ['light', 'dark', 'violet']
+  displayEl = document.getElementById('display')
 
 // Numbers
 let firstNum = undefined,
@@ -9,12 +8,24 @@ let firstNum = undefined,
   isNewNumber = true,
   func = undefined
 
-// detect color scheme
-if (
-  window.matchMedia &&
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-) {
-  setActivThemeSwitch(switcherEl.children[1])
+// Theme
+// Get from Local Storage
+const themeName = getThemeFromStorage()
+if (themeName) {
+  // load from storage
+  addClassToBodyEl(themeName)
+
+  const switchEl = switcherEl.querySelector(`*[data-switch='${themeName}'`)
+
+  setActivThemeSwitch(switchEl)
+} else {
+  // detect color scheme
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
+    setActivThemeSwitch(switcherEl.children[1])
+  }
 }
 
 // event listenerts
@@ -23,21 +34,11 @@ switcherEl.addEventListener('click', (e) => {
   if (e.target.classList.contains('theme_switch')) {
     setActivThemeSwitch(e.target)
 
-    changeTheme(parseInt(e.target.dataset.switch))
+    addClassToBodyEl(e.target.dataset.switch)
+
+    saveTheme(e.target.dataset.switch)
   }
 })
-
-window
-  .matchMedia('(prefers-color-scheme: dark)')
-  .addEventListener('change', (event) => {
-    const newColorScheme = event.matches ? 'dark' : 'light'
-
-    if (newColorScheme == 'dark') {
-      setActivThemeSwitch(switcherEl.children[1])
-    } else {
-      setActivThemeSwitch(switcherEl.children[0])
-    }
-  })
 
 // calc key listeners
 // using mouse click
@@ -78,8 +79,8 @@ keyboardEl.addEventListener('click', (e) => {
 
 // functions for changing theme
 
-function changeTheme(themeNumber) {
-  document.querySelector('body').classList = themeNames[themeNumber - 1]
+function addClassToBodyEl(themeName) {
+  document.querySelector('body').classList = themeName
 }
 
 function setActivThemeSwitch(switchEl) {
@@ -165,4 +166,13 @@ function calculate() {
   // prepare for new calculate
   secondNum = undefined
   func = undefined
+}
+
+// Local Storage For Theme
+function saveTheme(themeName) {
+  localStorage.setItem('theme', themeName)
+}
+
+function getThemeFromStorage() {
+  return localStorage.getItem('theme')
 }
