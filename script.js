@@ -138,13 +138,13 @@ function updateDisplay(keyPressed) {
     isNewNumber = false
   }
 
-  if (keyPressed == '.' && displayEl.value.includes('.')) {
+  if (keyPressed == ',' && displayEl.value.includes(',')) {
     return
   }
 
   if (displayEl.value == '0') {
-    if (keyPressed == '.') {
-      displayEl.value = '0.'
+    if (keyPressed == ',') {
+      displayEl.value = '0,'
     } else {
       displayEl.value = keyPressed
     }
@@ -158,8 +158,8 @@ function updateDisplay(keyPressed) {
 function stringToNumber() {
   const number = displayEl.value
 
-  if (number.includes('.')) {
-    return parseFloat(number)
+  if (number.includes(',')) {
+    return parseFloat(number.replace(',', '.'))
   } else {
     return parseInt(number)
   }
@@ -200,7 +200,7 @@ function calculate() {
 
   // store result in first number
   firstNum = func(firstNum, secondNum)
-  displayEl.value = firstNum
+  displayEl.value = firstNum.toString().replace('.', ',')
 
   // prepare for new calculate
   secondNum = undefined
