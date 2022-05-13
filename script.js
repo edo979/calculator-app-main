@@ -52,7 +52,7 @@ keyboardEl.addEventListener('click', (e) => {
 })
 displayEl.addEventListener('keydown', (e) => {
   e.preventDefault()
-  const keyPress = e.key
+  let keyPress = e.key
 
   if (keyPress == 'Backspace') {
     isFuncKeyPress('DEL')
@@ -66,8 +66,11 @@ displayEl.addEventListener('keydown', (e) => {
     isFuncKeyPress('=')
     return
   }
+  if (keyPress == '*') {
+    keyPress = 'x'
+  }
 
-  if ('0123456789/*-+,'.includes(keyPress)) {
+  if ('0123456789/x-+,'.includes(keyPress)) {
     if (isFuncKeyPress(keyPress)) {
       return
     }
