@@ -44,7 +44,33 @@ switcherEl.addEventListener('click', (e) => {
 // using mouse click
 keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
+  detectButton(keyPressed)
+  updateDisplay(keyPressed)
+})
+displayEl.addEventListener('keydown', (e) => {
+  e.preventDefault()
+  console.log(e.key)
+  detectButton(e.key)
+  updateDisplay(e.key)
+})
 
+// functions for changing theme
+
+function addClassToBodyEl(themeName) {
+  document.querySelector('body').classList = themeName
+}
+
+function setActivThemeSwitch(switchEl) {
+  Array.from(switcherEl.children).forEach((btn) =>
+    btn.classList.remove('theme_switch--active')
+  )
+
+  switchEl.classList.add('theme_switch--active')
+}
+
+// function for calc app
+
+function detectButton(keyPressed) {
   if (keyPressed == '=') {
     calculate()
     return
@@ -73,25 +99,7 @@ keyboardEl.addEventListener('click', (e) => {
     isNewNumber = true
     return
   }
-
-  updateDisplay(keyPressed)
-})
-
-// functions for changing theme
-
-function addClassToBodyEl(themeName) {
-  document.querySelector('body').classList = themeName
 }
-
-function setActivThemeSwitch(switchEl) {
-  Array.from(switcherEl.children).forEach((btn) =>
-    btn.classList.remove('theme_switch--active')
-  )
-
-  switchEl.classList.add('theme_switch--active')
-}
-
-// function for calc app
 
 function updateDisplay(keyPressed) {
   if (isNewNumber) {
