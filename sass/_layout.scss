@@ -12,3 +12,9 @@
   justify-content: var(--justify-, space-between);
   align-items: var(--align-, center);
 }
+
+@include mq {
+  .main-container {
+    width: min(544px, 90vw);
+  }
+}
