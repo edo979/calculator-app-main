@@ -99,6 +99,10 @@ function isFuncKeyPress(keyPressed) {
   }
 
   if ('+-/x'.includes(keyPressed)) {
+    if (firstNum == undefined) {
+      firstNum = 0
+    }
+
     if (secondNum != undefined) {
       calculate()
     }
