@@ -44,14 +44,36 @@ switcherEl.addEventListener('click', (e) => {
 // using mouse click
 keyboardEl.addEventListener('click', (e) => {
   const keyPressed = e.target.value
-  detectButton(keyPressed)
+  if (isFuncKeyPress(keyPressed)) {
+    return
+  }
+
   updateDisplay(keyPressed)
 })
 displayEl.addEventListener('keydown', (e) => {
   e.preventDefault()
-  console.log(e.key)
-  detectButton(e.key)
-  updateDisplay(e.key)
+  const keyPress = e.key
+
+  if (keyPress == 'Backspace') {
+    isFuncKeyPress('DEL')
+    return
+  }
+  if (keyPress == 'Delete') {
+    isFuncKeyPress('RESET')
+    return
+  }
+  if (keyPress == 'Enter') {
+    isFuncKeyPress('=')
+    return
+  }
+
+  if ('0123456789/*-+,'.includes(keyPress)) {
+    if (isFuncKeyPress(keyPress)) {
+      return
+    }
+
+    updateDisplay(keyPress)
+  }
 })
 
 // functions for changing theme
@@ -70,10 +92,10 @@ function setActivThemeSwitch(switchEl) {
 
 // function for calc app
 
-function detectButton(keyPressed) {
+function isFuncKeyPress(keyPressed) {
   if (keyPressed == '=') {
     calculate()
-    return
+    return true
   }
 
   if ('+-/x'.includes(keyPressed)) {
@@ -83,12 +105,12 @@ function detectButton(keyPressed) {
 
     setCalcFun(keyPressed)
     isNewNumber = true
-    return
+    return true
   }
 
   if (keyPressed == 'DEL') {
     displayEl.value = 0
-    return
+    return true
   }
 
   if (keyPressed == 'RESET') {
@@ -97,8 +119,10 @@ function detectButton(keyPressed) {
     secondNum = undefined
     func = undefined
     isNewNumber = true
-    return
+    return true
   }
+
+  return false
 }
 
 function updateDisplay(keyPressed) {
